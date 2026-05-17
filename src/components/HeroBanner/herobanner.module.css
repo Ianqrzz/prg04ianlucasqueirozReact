@@ -1,0 +1,13 @@
+.heroBanner { width: 100%; overflow: hidden; display: block; line-height: 0; }
+.heroBannerImgContainer { width: 100%; aspect-ratio: 69/19; }
+.heroBannerImg { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+@media (max-width: 600px ){
+    .hero-banner-img{
+        object-position: center center;
+    }
+
+    .hero-banner-container{
+        aspect-ratio: 2 / 1;
+    }
+}

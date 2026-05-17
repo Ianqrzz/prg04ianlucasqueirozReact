@@ -1,0 +1,21 @@
+table#tabelspec{
+    border: 1px solid;
+    border-spacing: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    width: 95%;
+}
+
+table#tabelspec td{
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    padding: 8px;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+table#tabelspec thead{
+    background-color: #1648d1;
+    font-size: 1rem;
+}
