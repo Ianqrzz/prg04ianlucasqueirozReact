@@ -40,14 +40,14 @@ function LoginForm() {
           <label>
             <input type="checkbox" /> Lembrar
           </label>
-          <a href="#">Esqueci minha senha</a>
+          <a href="/">Esqueci minha senha</a>
         </div>
 
         <div className={styles.inputButton}>
           <input type="submit" value="Entrar" />
         </div>
 
-        <p>registrar conta <a href="#">cadastrar-se</a></p>
+        <p>registrar conta <a href="/">cadastrar-se</a></p>
       </form>
     </div>
     </div>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import stlyes from './UserTable.module.css' 
+import styles from './UserTable.module.css' 
 
 
 
