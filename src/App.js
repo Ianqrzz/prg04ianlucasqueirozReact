@@ -4,7 +4,7 @@ import Home       from './pages/home/index'
 import Cart       from './pages/cart/index'
 import AdminPanel from './pages/admin/index' 
 import Login from './pages/login/index'
-import './App.css'
+import userRegister from './pages/userRegister'
 
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
         <Route path="/carrinho" element={<Cart />} />
         <Route path="/login"    element={<Login />} />
         <Route path="/admin"    element={<AdminPanel />} />
+        <Route path="/cadastro" element={<userRegister/>} />
       </Routes>
     </BrowserRouter>
   )

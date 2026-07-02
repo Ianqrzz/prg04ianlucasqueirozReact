@@ -1,9 +1,13 @@
 import React from 'react';
-
-
+import api from '../../services/api';
+import { useState, useEffect } from 'react';
 
 
 export default function UserTable(){
+
+  const [usuarios, setUsuarios] = useState ([]);
+  const [loading, setLoading] = useState([true]);
+  const [error, setError] = useState([null]);
     return(
 
         <table id="tabelspec"><thead>
