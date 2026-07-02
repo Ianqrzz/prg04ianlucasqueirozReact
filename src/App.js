@@ -16,7 +16,7 @@ function App() {
         <Route path="/carrinho" element={<Cart />} />
         <Route path="/login"    element={<Login />} />
         <Route path="/admin"    element={<AdminPanel />} />
-        <Route path="/cadastro" element={<userRegister/>} />
+        <Route path="/cadastro" element={<userRegister />} />
       </Routes>
     </BrowserRouter>
   )
