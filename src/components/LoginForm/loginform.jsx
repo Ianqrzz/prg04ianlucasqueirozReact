@@ -17,7 +17,7 @@ function LoginForm() {
     setLoading(true);
 
     try {
-      const response = await api.post('/usuario/findbyemail/' + email);
+      const response = await api.get('/usuario/findbyemail/' + email);
       const usuario = response.data;
 
       if ( usuario && usuario.senha === senha){
