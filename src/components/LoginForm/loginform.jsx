@@ -20,7 +20,7 @@ function LoginForm() {
       const response = await api.get('/usuario/findbyemail/' + email);
       const usuario = response.data;
 
-      if ( usuario && usuario.senha === senha){
+      if ( senha === usuario.senha){
         localStorage.setItem('usuario', JSON.stringify(usuario));
         navigate('/admin');
       } else {
