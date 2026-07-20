@@ -13,11 +13,12 @@ import '../../styles/Pages.css';
 export default function Orders() {
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();
-  const { get } = useApi();
+  const { get, put } = useApi();
 
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [expandedOrder, setExpandedOrder] = useState(null);
+  const [cancellingId, setCancellingId] = useState(null);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -42,15 +43,39 @@ export default function Orders() {
     }
   };
 
+  const handleCancelOrder = async (orderId) => {
+    const confirmar = window.confirm('Tem certeza que deseja cancelar este pedido? Essa ação não pode ser desfeita.');
+    if (!confirmar) return;
+
+    try {
+      setCancellingId(orderId);
+      const pedidoAtualizado = await put(`/pedido/cancelar/${orderId}`);
+
+      setOrders((prevOrders) =>
+        prevOrders.map((order) =>
+          order.id === orderId ? { ...order, status: pedidoAtualizado.status } : order
+        )
+      );
+    } catch (error) {
+      console.error('Erro ao cancelar pedido:', error);
+      const mensagem = error.response?.data?.message || 'Não foi possível cancelar o pedido. Tente novamente.';
+      alert(mensagem);
+    } finally {
+      setCancellingId(null);
+    }
+  };
+
   const getStatusColor = (status) => {
     switch (status) {
       case 'PENDENTE':
         return '#ffc107';
-      case 'CONFIRMADO':
+      case 'PAGO':
         return '#17a2b8';
       case 'ENVIADO':
         return '#28a745';
       case 'ENTREGUE':
+        return '#20c997';
+      case 'CONCLUIDO':
         return '#20c997';
       case 'CANCELADO':
         return '#dc3545';
@@ -63,12 +88,14 @@ export default function Orders() {
     switch (status) {
       case 'PENDENTE':
         return '⏳ Pendente';
-      case 'CONFIRMADO':
-        return '✓ Confirmado';
+      case 'PAGO':
+        return '✓ Pago';
       case 'ENVIADO':
         return '📦 Enviado';
       case 'ENTREGUE':
         return '✓ Entregue';
+      case 'CONCLUIDO':
+        return '✓ Concluído';
       case 'CANCELADO':
         return '✕ Cancelado';
       default:
@@ -135,13 +162,15 @@ export default function Orders() {
                     <div>
                       <p style={{ margin: '0 0 4px 0', color: '#666', fontSize: '14px' }}>Data</p>
                       <p style={{ margin: '0', fontWeight: 600 }}>
-                        {new Date(order.data_pedido).toLocaleDateString('pt-PT')}
+                        {order.dataHoraCriacao
+                          ? new Date(order.dataHoraCriacao).toLocaleDateString('pt-BR')
+                          : '—'}
                       </p>
                     </div>
                     <div>
                       <p style={{ margin: '0 0 4px 0', color: '#666', fontSize: '14px' }}>Total</p>
                       <p style={{ margin: '0', fontWeight: 600, fontSize: '18px', color: '#007bff' }}>
-                        €{order.total?.toFixed(2)}
+                        {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(order.valorTotal || 0)}
                       </p>
                     </div>
                     <div>
@@ -161,13 +190,19 @@ export default function Orders() {
                   {/* Endereço */}
                   <div style={{ padding: '12px', backgroundColor: '#f8f9fa', borderRadius: '4px', fontSize: '14px' }}>
                     <p style={{ margin: '0 0 4px 0', fontWeight: 600 }}>Endereço de Entrega</p>
-                    <p style={{ margin: '0' }}>
-                      {order.endereco?.rua}, {order.endereco?.numero}
-                      {order.endereco?.complemento && ` - ${order.endereco.complemento}`}
-                    </p>
-                    <p style={{ margin: '4px 0 0 0' }}>
-                      {order.endereco?.cidade}, {order.endereco?.estado} {order.endereco?.cep}
-                    </p>
+                    {order.endereco ? (
+                      <>
+                        <p style={{ margin: '0' }}>
+                          {order.endereco.rua}, {order.endereco.numero}
+                          {order.endereco.bairro && ` - ${order.endereco.bairro}`}
+                        </p>
+                        <p style={{ margin: '4px 0 0 0' }}>
+                          {order.endereco.cidade}, {order.endereco.estado} {order.endereco.cep}
+                        </p>
+                      </>
+                    ) : (
+                      <p style={{ margin: '0', color: '#999' }}>Endereço não informado</p>
+                    )}
                   </div>
                 </div>
 
@@ -196,22 +231,27 @@ export default function Orders() {
                       </tr>
                     </thead>
                     <tbody>
-                      {(order.itens || []).map((item, index) => (
-                        <tr key={index} style={{ borderBottom: '1px solid #dee2e6' }}>
-                          <td style={{ padding: '12px' }}>
-                            {item.produto?.nome || 'Produto'}
-                          </td>
-                          <td style={{ padding: '12px', textAlign: 'center' }}>
-                            €{item.preco_unitario?.toFixed(2)}
-                          </td>
-                          <td style={{ padding: '12px', textAlign: 'center' }}>
-                            {item.quantidade}
-                          </td>
-                          <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600 }}>
-                            €{(item.preco_unitario * item.quantidade).toFixed(2)}
-                          </td>
-                        </tr>
-                      ))}
+                      {(order.itensPedido || []).map((item, index) => {
+                        const formatCurrency = (value) =>
+                          new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value || 0);
+
+                        return (
+                          <tr key={item.id ?? index} style={{ borderBottom: '1px solid #dee2e6' }}>
+                            <td style={{ padding: '12px' }}>
+                              {item.produto?.nome || 'Produto'}
+                            </td>
+                            <td style={{ padding: '12px', textAlign: 'center' }}>
+                              {formatCurrency(item.valorUnitario)}
+                            </td>
+                            <td style={{ padding: '12px', textAlign: 'center' }}>
+                              {item.quantidade}
+                            </td>
+                            <td style={{ padding: '12px', textAlign: 'right', fontWeight: 600 }}>
+                              {formatCurrency((item.valorUnitario || 0) * (item.quantidade || 0))}
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
 
@@ -224,8 +264,12 @@ export default function Orders() {
                       🔄 Rastrear Pedido
                     </Button>
                     {order.status !== 'ENTREGUE' && order.status !== 'CANCELADO' && (
-                      <Button variant="outline">
-                        ✕ Cancelar Pedido
+                      <Button
+                        variant="outline"
+                        onClick={() => handleCancelOrder(order.id)}
+                        disabled={cancellingId === order.id}
+                      >
+                        {cancellingId === order.id ? 'Cancelando...' : '✕ Cancelar Pedido'}
                       </Button>
                     )}
                   </div>

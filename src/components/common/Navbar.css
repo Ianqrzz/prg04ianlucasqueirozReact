@@ -1,10 +1,10 @@
 /* Navbar */
 .navbar {
-  background-color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--ink);
   position: sticky;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 2px 12px rgba(28, 18, 51, 0.25);
 }
 
 .navbar-container {
@@ -22,17 +22,18 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
 .navbar-logo {
   font-size: 24px;
   font-weight: 700;
-  color: #007bff;
-  transition: color 0.3s ease;
+  color: var(--ticket-yellow);
+  transition: color 0.2s ease;
 }
 
 .navbar-logo:hover {
-  color: #0056b3;
+  color: white;
 }
 
 /* Menu */
@@ -49,11 +50,11 @@
 }
 
 .navbar-link {
-  color: #333;
+  color: rgba(10, 7, 7, 0.85);
   text-decoration: none;
   font-weight: 500;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
   position: relative;
   display: flex;
   align-items: center;
@@ -61,7 +62,7 @@
 }
 
 .navbar-link:hover {
-  color: #007bff;
+  color: var(--ticket-yellow);
 }
 
 .navbar-link::after {
@@ -71,8 +72,8 @@
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #007bff;
-  transition: width 0.3s ease;
+  background-color: var(--claw-pink);
+  transition: width 0.2s ease;
 }
 
 .navbar-link:hover::after {
@@ -81,11 +82,11 @@
 
 /* Cart Badge */
 .cart-badge {
-  background-color: #dc3545;
+  background-color: var(--claw-pink);
   color: white;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,31 +102,33 @@
 }
 
 .navbar-user {
-  color: #333;
+  color: rgba(0, 0, 0, 0.85);
   font-weight: 500;
 }
 
 .navbar-btn {
   padding: 10px 20px;
   border: none;
-  border-radius: 4px;
-  background-color: #007bff;
+  border-radius: 999px;
+  background-color: var(--claw-pink);
   color: white;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .navbar-btn:hover {
-  background-color: #0056b3;
+  background-color: var(--claw-pink-dark);
 }
 
 .navbar-btn.logout {
-  background-color: #dc3545;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .navbar-btn.logout:hover {
-  background-color: #c82333;
+  background-color: var(--danger);
+  border-color: var(--danger);
 }
 
 /* Toggle Button (Mobile) */
@@ -135,7 +138,7 @@
   border: none;
   font-size: 24px;
   cursor: pointer;
-  color: #333;
+  color: white;
 }
 
 /* Mobile Responsive */
@@ -153,11 +156,11 @@
     top: 60px;
     left: 0;
     right: 0;
-    background-color: #ffffff;
+    background-color: var(--ink);
     flex-direction: column;
     gap: 0;
     padding: 20px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
@@ -171,7 +174,7 @@
     width: 100%;
     flex-direction: column;
     gap: 16px;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     padding-bottom: 16px;
     margin-bottom: 16px;
   }

@@ -269,7 +269,7 @@ const shipping = 5.99;
                       <p style={{ margin: '0', fontWeight: 500 }}>{item.nome}</p>
                       <p style={{ margin: '4px 0 0 0', fontSize: '12px', color: '#666' }}>x{item.quantidade || item.quantity || 1}</p>
                     </div>
-                    <span>€{(item.preco * (item.quantidade || item.quantity || 1)).toFixed(2)}</span>
+                    <span>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format((item.preco || 0) * (item.quantidade || item.quantity || 1))}</span>
                   </div>
                 ))}
               </div>
@@ -277,19 +277,19 @@ const shipping = 5.99;
               <div style={{ paddingTop: '16px', borderTop: '2px solid #dee2e6' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
                   <span>Subtotal:</span>
-                  <span>€{subtotal.toFixed(2)}</span>
+                  <span>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(subtotal)}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
                   <span>IVA:</span>
-                  <span>€{tax.toFixed(2)}</span>
+                  <span>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(tax)}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
                   <span>Envio:</span>
-                  <span>€{shipping.toFixed(2)}</span>
+                  <span>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(shipping)}</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '18px', fontWeight: 600, color: '#007bff' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '18px', fontWeight: 600, color: 'var(--claw-pink)' }}>
                   <span>Total:</span>
-                  <span>€{total.toFixed(2)}</span>
+                  <span>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(total)}</span>
                 </div>
               </div>
             </Card>

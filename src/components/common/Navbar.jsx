@@ -25,7 +25,7 @@ export default function NavbarComponent() {
       <div className="navbar-container">
         {/* Logo */}
         <Link to="/" className="navbar-brand" onClick={closeMenu}>
-          <span className="navbar-logo">🎮 074 Diversão</span>
+          <span className="navbar-logo">🧸 074 Diversão</span>
         </Link>
 
         {/* Menu Toggle (Mobile) */}

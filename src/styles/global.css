@@ -1,3 +1,52 @@
-body{
-    background-color: aqua;
+:root {
+  /* Paleta */
+  --ink: #1c1233;
+  --ink-soft: #4a3b66;
+  --paper: #fff9f0;
+  --claw-pink: #ff3e7f;
+  --claw-pink-dark: #e31f63;
+  --ticket-yellow: #ffc93c;
+  --arcade-teal: #14b8a6;
+  --arcade-teal-dark: #0f9689;
+  --plush-purple: #7c5cff;
+  --danger: #e63946;
+  --border: #ece3f5;
+  --text: #241b36;
+  --text-light: #6b5e85;
+
+  /* Tipografia */
+  --font-display: 'Baloo 2', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .navbar-logo {
+  font-family: var(--font-display);
+}
+
+a {
+  color: inherit;
+}
+
+
+.ticket-edge {
+  height: 22px;
+  width: 100%;
+  mask-image: radial-gradient(circle at 11px 11px, transparent 10px, black 11px);
+  -webkit-mask-image: radial-gradient(circle at 11px 11px, transparent 10px, black 11px);
+  mask-size: 22px 22px;
+  -webkit-mask-size: 22px 22px;
+  mask-repeat: repeat-x;
+  -webkit-mask-repeat: repeat-x;
 }

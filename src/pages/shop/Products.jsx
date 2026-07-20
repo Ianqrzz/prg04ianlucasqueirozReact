@@ -158,7 +158,7 @@ export default function Products() {
               <Loading message="Buscando as melhores máquinas..." />
             ) : filteredProducts.length === 0 ? (
               <div className="empty-state" style={{ textAlign: 'center', padding: '40px' }}>
-                <p style={{ fontSize: '1.2rem', marginBottom: '16px', color: '#666' }}>Nenhum produto encontrado.</p>
+                <p style={{ fontSize: '1.2rem', marginBottom: '16px', color: 'var(--text-light)' }}>Nenhum produto encontrado.</p>
                 <Button onClick={() => {
                   setSearchTerm('');
                   setSelectedCategory(null);
@@ -172,20 +172,23 @@ export default function Products() {
                 <div className="products-list" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '24px' }}>
                   {filteredProducts.map((product) => (
                     <Card key={product.id} className="product-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                      <div className="product-image" style={{ height: '200px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f9f9f9', borderRadius: '8px 8px 0 0' }}>
-                        <img
-                          src={product.imagem_url || 'https://via.placeholder.com/400x300?text=Sem+Imagem'}
-                          alt={product.nome}
-                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        />
+                      <div className="product-image" style={{ height: '200px', borderRadius: '16px 16px 0 0' }}>
+                        {product.imagem_url ? (
+                          <img
+                            src={product.imagem_url}
+                            alt={product.nome}
+                          />
+                        ) : (
+                          <span style={{ fontSize: '48px' }} role="img" aria-label="Produto sem imagem">🧸</span>
+                        )}
                       </div>
                       <div className="product-info" style={{ padding: '16px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
                         <h3 style={{ fontSize: '1.1rem', marginBottom: '8px' }}>{product.nome}</h3>
-                        <p className="product-description" style={{ color: '#666', fontSize: '0.9rem', marginBottom: '16px', flexGrow: 1 }}>
+                        <p className="product-description" style={{ marginBottom: '16px', flexGrow: 1 }}>
                           {product.descricao?.length > 60 ? `${product.descricao.substring(0, 60)}...` : product.descricao}
                         </p>
-                        <div className="product-footer" style={{ marginTop: 'auto' }}>
-                          <span className="price" style={{ display: 'block', fontSize: '1.4rem', fontWeight: 'bold', color: '#1a1a1a', marginBottom: '12px' }}>
+                        <div className="product-footer" style={{ display: 'block', marginTop: 'auto' }}>
+                          <span className="price" style={{ display: 'inline-block', marginBottom: '12px' }}>
                             {formatarMoeda(product.preco)}
                           </span>
                           <div style={{ display: 'flex', gap: '8px', width: '100%' }}>

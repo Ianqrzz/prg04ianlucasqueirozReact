@@ -78,10 +78,11 @@ export default function ProductDetail() {
         <div className="product-detail-container">
           {/* Imagem */}
           <div className="product-detail-image">
-            <img
-              src={product.imagem_url || 'https://via.placeholder.com/400x400?text=Produto'}
-              alt={product.nome}
-            />
+            {product.imagem_url ? (
+              <img src={product.imagem_url} alt={product.nome} />
+            ) : (
+              <span style={{ fontSize: '80px' }} role="img" aria-label="Produto sem imagem">🧸</span>
+            )}
           </div>
 
           {/* Informações */}
@@ -89,7 +90,7 @@ export default function ProductDetail() {
             <h1>{product.nome}</h1>
 
             <div className="product-detail-price">
-              €{product.preco?.toFixed(2)}
+              {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.preco || 0)}
             </div>
 
             <div className="product-detail-rating">
@@ -141,7 +142,7 @@ export default function ProductDetail() {
             <div style={{ marginTop: '32px', paddingTop: '32px', borderTop: '1px solid #dee2e6' }}>
               <h3 style={{ marginBottom: '16px' }}>Informações de Envio</h3>
               <ul style={{ listStyle: 'none', padding: 0 }}>
-                <li style={{ marginBottom: '8px' }}>📦 Envio para Portugal: €5.99</li>
+                <li style={{ marginBottom: '8px' }}>📦 Frete: R$ 5,99</li>
                 <li style={{ marginBottom: '8px' }}>🚚 Entrega em 24-48 horas</li>
                 <li style={{ marginBottom: '8px' }}>↩️ Devolução gratuita em 30 dias</li>
                 <li>🔒 Compra 100% segura</li>
@@ -197,7 +198,9 @@ export default function ProductDetail() {
                   </tr>
                   <tr style={{ borderBottom: '1px solid #dee2e6' }}>
                     <td style={{ padding: '12px', fontWeight: 600 }}>Preço</td>
-                    <td style={{ padding: '12px' }}>€{product.preco?.toFixed(2)}</td>
+                    <td style={{ padding: '12px' }}>
+                      {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.preco || 0)}
+                    </td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid #dee2e6' }}>
                     <td style={{ padding: '12px', fontWeight: 600 }}>Disponibilidade</td>

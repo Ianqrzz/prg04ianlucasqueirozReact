@@ -86,14 +86,20 @@ export default function Cart() {
                     <tr key={item.id} style={{ borderBottom: '1px solid #dee2e6' }}>
                       <td style={{ padding: '16px' }}>
                         <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                          <img
-                            src={item.imagemUrl || 'https://via.placeholder.com/60x60?text=Produto'}
-                            alt={item.nome}
-                            style={{ width: '60px', height: '60px', borderRadius: '4px', objectFit: 'cover' }}
-                          />
+                          {item.imagemUrl ? (
+                            <img
+                              src={item.imagemUrl}
+                              alt={item.nome}
+                              style={{ width: '60px', height: '60px', borderRadius: '10px', objectFit: 'cover' }}
+                            />
+                          ) : (
+                            <div style={{ width: '60px', height: '60px', borderRadius: '10px', backgroundColor: 'var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
+                              🧸
+                            </div>
+                          )}
                           <div>
                             <strong>{item.nome}</strong>
-                            <p style={{ fontSize: '12px', color: '#666', margin: '4px 0 0 0' }}>
+                            <p style={{ fontSize: '12px', color: 'var(--text-light)', margin: '4px 0 0 0' }}>
                               {item.categoria?.nome}
                             </p>
                           </div>
@@ -176,7 +182,7 @@ export default function Cart() {
 
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '24px', fontSize: '18px', fontWeight: 600 }}>
                 <span>Total:</span>
-                <span style={{ color: '#007bff' }}>R$ {total.toFixed(2)}</span>
+                <span style={{ color: 'var(--claw-pink)' }}>R$ {total.toFixed(2)}</span>
               </div>
 
               <Button
