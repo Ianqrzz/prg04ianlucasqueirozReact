@@ -1,70 +1,275 @@
-# Getting Started with Create React App
+# 🛍️ Diversão E-commerce - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Frontend React para plataforma de e-commerce de brinquedos (máquinas de pegar ursinho de pelúcia)
 
-## Available Scripts
+## 📋 Sobre o Projeto
 
-In the project directory, you can run:
+**Diversão** é um e-commerce académico desenvolvido como projeto de conclusão de curso. A plataforma permite que utilizadores naveguem por um catálogo de produtos, adicionem itens ao carrinho e realizem compras.
 
-### `npm start`
+### 🎯 Funcionalidades Principais
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- ✅ **Autenticação** - Login e cadastro de utilizadores
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- ✅ **Catálogo de Produtos** - Listagem com filtros por categoria
 
-### `npm test`
+- ✅ **Carrinho de Compras** - Adicionar, remover e atualizar quantidades
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ✅ **Checkout** - Processo de compra simplificado
 
-### `npm run build`
+- ✅ **Pedidos** - Visualizar histórico de compras
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- ✅ **Responsivo** - Funciona em desktop, tablet e mobile
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🛠️ Tecnologias Utilizadas
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| Tecnologia | Versão | Descrição |
+| --- | --- | --- |
+| **React** | 19.2.6 | Biblioteca JavaScript para UI |
+| **React Router DOM** | 7.15.1 | Roteamento de páginas |
+| **Axios** | 1.18.1 | Cliente HTTP para requisições |
+| **Bootstrap** | 5.3.8 | Framework CSS |
+| **React Bootstrap** | 2.10.10 | Componentes Bootstrap em React |
 
-### `npm run eject`
+## 📁 Estrutura de Pastas
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+src/
+├── components/              # Componentes reutilizáveis
+│   ├── HeroBanner/         # Banner principal
+│   ├── LoginForm/          # Formulário de login
+│   ├── UserForm/           # Formulário de cadastro
+│   ├── UserTable/          # Tabela de utilizadores
+│   ├── navbar/             # Barra de navegação
+│   └── ui/                 # Componentes UI (Button, Card, etc)
+│
+├── pages/                   # Páginas da aplicação
+│   ├── about/              # Página sobre
+│   ├── admin/              # Painel administrativo
+│   ├── dashboard/          # Dashboard
+│   ├── home/               # Página principal
+│   ├── login/              # Página de login
+│   ├── cart/               # Página do carrinho
+│   └── userRegister/       # Página de cadastro
+│
+├── services/               # Serviços de API
+│   └── api.js              # Configuração Axios
+│
+├── styles/                 # Estilos globais
+│   └── global.css          # CSS global
+│
+├── assets/                 # Imagens e recursos estáticos
+│
+├── App.js                  # Componente principal
+├── index.js                # Ponto de entrada
+└── index.css               # Estilos da página
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🚀 Como Executar
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Pré-requisitos
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Node.js 16+ instalado
 
-## Learn More
+- npm ou yarn
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Backend rodando em `https://prg04ianlucasqueiroz-backend-production.up.railway.app`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Instalação
 
-### Code Splitting
+```bash
+# 1. Clonar o repositório
+git clone https://github.com/Ianqrzz/prg04ianlucasqueirozReact.git
+cd prg04ianlucasqueirozReact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# 2. Instalar dependências
+npm install
 
-### Analyzing the Bundle Size
+# 3. Iniciar o servidor de desenvolvimento
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+A aplicação abrirá automaticamente em `http://localhost:3000`
 
-### Making a Progressive Web App
+### Build para Produção
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+npm run build
+```
 
-### Advanced Configuration
+Gera uma pasta `build/` otimizada para produção.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 📡 Integração com Backend
 
-### Deployment
+O frontend se comunica com o backend através da API REST em:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+https://prg04ianlucasqueiroz-backend-production.up.railway.app
+```
 
-### `npm run build` fails to minify
+### Principais Endpoints Utilizados
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| Método | Endpoint | Descrição |
+| --- | --- | --- |
+| POST | `/usuario/save` | Criar novo utilizador |
+| POST | `/usuario/login` | Autenticar utilizador |
+| GET | `/usuario/findall` | Listar utilizadores |
+| GET | `/produto/findall` | Listar produtos |
+| GET | `/categoria/findall` | Listar categorias |
+
+## 🔑 Variáveis de Ambiente
+
+Crie um arquivo `.env` na raiz do projeto (opcional ):
+
+```
+REACT_APP_API_URL=https://prg04ianlucasqueiroz-backend-production.up.railway.app
+```
+
+## 📝 Páginas Disponíveis
+
+### 🏠 Home (`/` )
+
+Página principal com hero banner e produtos em destaque.
+
+### 🛒 Produtos (`/produtos`)
+
+Listagem completa de produtos com:
+
+- Filtro por categoria
+
+- Busca por termo
+
+- Paginação
+
+- Adicionar ao carrinho
+
+### 🛍️ Carrinho (`/carrinho`)
+
+Visualizar itens do carrinho:
+
+- Alterar quantidade
+
+- Remover itens
+
+- Ver total
+
+- Ir para checkout
+
+### 🔐 Login (`/login`)
+
+Autenticar utilizador com email e senha.
+
+### 📝 Cadastro (`/cadastro`)
+
+Criar nova conta com:
+
+- Nome completo
+
+- Email
+
+- Senha
+
+- Validações
+
+### 📦 Pedidos (`/pedidos`)
+
+Visualizar histórico de compras (se autenticado).
+
+## 🎨 Design System
+
+### Cores Principais
+
+- **Primária**: `#007bff` (Azul)
+
+- **Secundária**: `#28a745` (Verde)
+
+- **Fundo**: `#f8f9fa` (Cinza claro)
+
+- **Texto**: `#333333` (Cinza escuro)
+
+### Tipografia
+
+- **Fonte**: Arial, sans-serif
+
+- **Tamanho base**: 16px
+
+## 🧪 Testes
+
+```bash
+# Executar testes
+npm test
+
+# Executar testes com cobertura
+npm test -- --coverage
+```
+
+## 🐛 Troubleshooting
+
+### Erro: "Cannot find module 'axios'"
+
+```bash
+npm install axios
+```
+
+### Erro: "CORS policy"
+
+Certifique-se de que o backend tem CORS habilitado.
+
+### Erro: "Backend não responde"
+
+Verifique se o backend está rodando em:`https://prg04ianlucasqueiroz-backend-production.up.railway.app`
+
+## 📦 Deploy
+
+### Vercel (Recomendado )
+
+```bash
+# 1. Instalar Vercel CLI
+npm i -g vercel
+
+# 2. Fazer deploy
+vercel
+```
+
+### Netlify
+
+```bash
+# 1. Instalar Netlify CLI
+npm i -g netlify-cli
+
+# 2. Fazer deploy
+netlify deploy --prod --dir=build
+```
+
+## 👨‍💻 Desenvolvedor
+
+**Ian Queiroz**
+
+- GitHub: [@Ianqrzz](https://github.com/Ianqrzz)
+
+- Email: [ian.queiroz@example.com](mailto:ian.queiroz@example.com)
+
+## 📄 Licença
+
+Este projeto é académico e está disponível sob a licença MIT.
+
+## 🤝 Contribuições
+
+Contribuições são bem-vindas! Por favor:
+
+1. Faça um Fork do projeto
+
+1. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+
+1. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+
+1. Push para a branch (`git push origin feature/AmazingFeature`)
+
+1. Abra um Pull Request
+
+## 📞 Suporte
+
+Para dúvidas ou problemas, abra uma issue no GitHub.
+
+---
+
+**Desenvolvido com ❤️ como projeto académico**

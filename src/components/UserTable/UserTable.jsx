@@ -3,11 +3,43 @@ import api from '../../services/api';
 import { useState, useEffect } from 'react';
 
 
-export default function UserTable(){
+export default function UserTable(){  
 
   const [usuarios, setUsuarios] = useState ([]);
-  const [loading, setLoading] = useState([true]);
-  const [error, setError] = useState([null]);
+  const [paginaAtual, setPaginaAtual] = useState([0]);
+  const [totalPaginas, setTotalPaginas] = useState([0]);
+
+  const [carregando, setCarregando] = useState(false);
+  const [erro, setErro] = useState('');
+
+
+  useEffect (() => {
+    buscarUsuarios(PaginaAtual);
+  }, [paginaAtual])
+
+
+   const buscarUsuarios = async (page) =>{
+    setCarregando(true);
+    serErro('');
+
+    try {
+
+
+      const response = await api.get('/usuario/findall')
+    }
+   
+
+
+
+
+
+
+
+
+
+
+
+
     return(
 
         <table id="tabelspec"><thead>
